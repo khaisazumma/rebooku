@@ -1,0 +1,211 @@
+<%- include('layout', { body: `
+<div class="hero-section bg-primary text-white py-5">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <h1 class="display-4 fw-bold mb-4">Temukan Buku Impian Anda di Rebooku</h1>
+                <p class="lead mb-4">Platform marketplace buku bekas terpercaya dengan sistem review komunitas. Jual dan beli buku berkualitas dengan harga terjangkau.</p>
+                <div class="d-flex flex-wrap gap-3">
+                    <a href="/books" class="btn btn-light btn-lg">
+                        <i class="fas fa-search me-2"></i>Jelajahi Buku
+                    </a>
+                    <a href="/books/sell/new" class="btn btn-outline-light btn-lg">
+                        <i class="fas fa-plus me-2"></i>Jual Buku
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-6 text-center">
+                <img src="/images/hero-books.jpg" alt="Koleksi Buku" class="img-fluid rounded shadow-lg">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Features Section -->
+<section class="py-5">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-12">
+                <h2 class="fw-bold">Mengapa Memilih Rebooku?</h2>
+                <p class="text-muted">Platform terlengkap untuk kebutuhan buku bekas Anda</p>
+            </div>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body text-center p-4">
+                        <div class="feature-icon bg-primary text-white rounded-circle mx-auto mb-3">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h5>Terpercaya & Aman</h5>
+                        <p class="text-muted">Sistem verifikasi penjual dan review komunitas memastikan kualitas buku yang Anda beli.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body text-center p-4">
+                        <div class="feature-icon bg-success text-white rounded-circle mx-auto mb-3">
+                            <i class="fas fa-tags"></i>
+                        </div>
+                        <h5>Harga Terjangkau</h5>
+                        <p class="text-muted">Dapatkan buku berkualitas dengan harga hingga 70% lebih murah dari harga asli.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body text-center p-4">
+                        <div class="feature-icon bg-info text-white rounded-circle mx-auto mb-3">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h5>Komunitas Aktif</h5>
+                        <p class="text-muted">Bergabung dengan komunitas pecinta buku dan berbagi review serta rekomendasi.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Featured Books -->
+<% if (featuredBooks && featuredBooks.length > 0) { %>
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row mb-4">
+            <div class="col-12 text-center">
+                <h2 class="fw-bold">Buku Pilihan</h2>
+                <p class="text-muted">Koleksi buku terbaik yang direkomendasikan komunitas</p>
+            </div>
+        </div>
+        <div class="row g-4">
+            <% featuredBooks.forEach(book => { %>
+            <div class="col-lg-2 col-md-4 col-sm-6">
+                <div class="card h-100 shadow-sm book-card">
+                    <div class="book-image-container">
+                        <img src="<%= book.images && book.images.length > 0 ? '/uploads/books/' + book.images[0] : '/images/book-placeholder.jpg' %>" 
+                             class="card-img-top" alt="<%= book.title %>">
+                        <div class="book-overlay">
+                            <a href="/books/<%= book._id %>" class="btn btn-primary btn-sm">Lihat Detail</a>
+                        </div>
+                    </div>
+                    <div class="card-body p-3">
+                        <h6 class="card-title text-truncate"><%= book.title %></h6>
+                        <p class="card-text text-muted small mb-2"><%= book.author %></p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span class="text-primary fw-bold">Rp <%= book.price.toLocaleString('id-ID') %></span>
+                            <div class="rating">
+                                <% for(let i = 1; i <= 5; i++) { %>
+                                    <i class="fas fa-star <%= i <= book.averageRating ? 'text-warning' : 'text-muted' %>"></i>
+                                <% } %>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <% }); %>
+        </div>
+        <div class="text-center mt-4">
+            <a href="/books" class="btn btn-primary">Lihat Semua Buku</a>
+        </div>
+    </div>
+</section>
+<% } %>
+
+<!-- Recent Articles -->
+<% if (recentArticles && recentArticles.length > 0) { %>
+<section class="py-5">
+    <div class="container">
+        <div class="row mb-4">
+            <div class="col-12 text-center">
+                <h2 class="fw-bold">Artikel & Review Terbaru</h2>
+                <p class="text-muted">Baca review dan artikel menarik dari komunitas Rebooku</p>
+            </div>
+        </div>
+        <div class="row g-4">
+            <% recentArticles.forEach(article => { %>
+            <div class="col-md-4">
+                <div class="card h-100 shadow-sm">
+                    <img src="<%= article.image ? '/uploads/articles/' + article.image : '/images/article-placeholder.jpg' %>" 
+                         class="card-img-top article-image" alt="<%= article.title %>">
+                    <div class="card-body">
+                        <span class="badge bg-primary mb-2"><%= article.category %></span>
+                        <h5 class="card-title"><%= article.title %></h5>
+                        <p class="card-text text-muted"><%= article.excerpt %></p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <small class="text-muted">
+                                <i class="fas fa-user me-1"></i><%= article.author.fullName || article.author.username %>
+                            </small>
+                            <small class="text-muted">
+                                <i class="fas fa-eye me-1"></i><%= article.views %>
+                            </small>
+                        </div>
+                    </div>
+                    <div class="card-footer bg-transparent">
+                        <a href="/articles/<%= article._id %>" class="btn btn-outline-primary btn-sm">Baca Selengkapnya</a>
+                    </div>
+                </div>
+            </div>
+            <% }); %>
+        </div>
+        <div class="text-center mt-4">
+            <a href="/articles" class="btn btn-primary">Lihat Semua Artikel</a>
+        </div>
+    </div>
+</section>
+<% } %>
+
+<!-- CTA Section -->
+<section class="py-5 bg-primary text-white">
+    <div class="container text-center">
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="fw-bold mb-4">Siap Memulai Perjalanan Literasi Anda?</h2>
+                <p class="lead mb-4">Bergabunglah dengan ribuan pengguna yang telah merasakan kemudahan berbelanja buku di Rebooku</p>
+                <div class="d-flex flex-wrap justify-content-center gap-3">
+                    <% if (!user) { %>
+                        <a href="/auth/register" class="btn btn-light btn-lg">
+                            <i class="fas fa-user-plus me-2"></i>Daftar Sekarang
+                        </a>
+                    <% } %>
+                    <a href="/books" class="btn btn-outline-light btn-lg">
+                        <i class="fas fa-book me-2"></i>Mulai Belanja
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Statistics -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-md-3 col-6 mb-4">
+                <div class="stat-item">
+                    <h3 class="fw-bold text-primary mb-2">10,000+</h3>
+                    <p class="text-muted">Buku Tersedia</p>
+                </div>
+            </div>
+            <div class="col-md-3 col-6 mb-4">
+                <div class="stat-item">
+                    <h3 class="fw-bold text-success mb-2">5,000+</h3>
+                    <p class="text-muted">Pengguna Aktif</p>
+                </div>
+            </div>
+            <div class="col-md-3 col-6 mb-4">
+                <div class="stat-item">
+                    <h3 class="fw-bold text-info mb-2">15,000+</h3>
+                    <p class="text-muted">Transaksi Berhasil</p>
+                </div>
+            </div>
+            <div class="col-md-3 col-6 mb-4">
+                <div class="stat-item">
+                    <h3 class="fw-bold text-warning mb-2">98%</h3>
+                    <p class="text-muted">Kepuasan Pelanggan</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+` }) %>

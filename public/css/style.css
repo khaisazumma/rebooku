@@ -1,0 +1,325 @@
+/* Custom CSS for Rebooku */
+
+:root {
+  --primary-color: #2c3e50;
+  --secondary-color: #3498db;
+  --success-color: #27ae60;
+  --warning-color: #f39c12;
+  --danger-color: #e74c3c;
+  --light-color: #ecf0f1;
+  --dark-color: #2c3e50;
+}
+
+/* Global Styles */
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+}
+
+.bg-primary {
+  background-color: var(--primary-color) !important;
+}
+
+.text-primary {
+  color: var(--primary-color) !important;
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+.btn-primary:hover {
+  background-color: #34495e;
+  border-color: #34495e;
+}
+
+/* Hero Section */
+.hero-section {
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+  min-height: 500px;
+  display: flex;
+  align-items: center;
+}
+
+.hero-section img {
+  max-height: 400px;
+  object-fit: cover;
+}
+
+/* Feature Icons */
+.feature-icon {
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+}
+
+/* Book Cards */
+.book-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: none;
+}
+
+.book-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.book-image-container {
+  position: relative;
+  overflow: hidden;
+  height: 200px;
+}
+
+.book-image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.book-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.book-card:hover .book-overlay {
+  opacity: 1;
+}
+
+.book-card:hover .book-image-container img {
+  transform: scale(1.1);
+}
+
+/* Article Images */
+.article-image {
+  height: 200px;
+  object-fit: cover;
+}
+
+/* Rating Stars */
+.rating .fa-star {
+  font-size: 0.8rem;
+}
+
+/* Search and Filter */
+.search-filters {
+  background: #f8f9fa;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 30px;
+}
+
+.filter-group {
+  margin-bottom: 15px;
+}
+
+/* Cart Badge */
+#cart-count {
+  font-size: 0.7rem;
+  padding: 2px 6px;
+}
+
+/* Dashboard Cards */
+.dashboard-card {
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease;
+}
+
+.dashboard-card:hover {
+  transform: translateY(-3px);
+}
+
+.stat-card {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-radius: 15px;
+  padding: 30px;
+  text-align: center;
+}
+
+.stat-card.success {
+  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+}
+
+.stat-card.warning {
+  background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+}
+
+.stat-card.danger {
+  background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+}
+
+/* Form Styles */
+.form-control:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 0.2rem rgba(44, 62, 80, 0.25);
+}
+
+.form-select:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 0.2rem rgba(44, 62, 80, 0.25);
+}
+
+/* Comment Section */
+.comment-item {
+  border-left: 3px solid var(--primary-color);
+  padding-left: 15px;
+  margin-bottom: 20px;
+}
+
+.comment-reply {
+  margin-left: 30px;
+  border-left: 2px solid #dee2e6;
+  padding-left: 15px;
+}
+
+/* Transaction Status */
+.status-pending {
+  color: var(--warning-color);
+}
+
+.status-confirmed {
+  color: var(--secondary-color);
+}
+
+.status-shipped {
+  color: var(--success-color);
+}
+
+.status-delivered {
+  color: var(--success-color);
+}
+
+.status-cancelled {
+  color: var(--danger-color);
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .hero-section {
+    text-align: center;
+    padding: 40px 0;
+  }
+
+  .hero-section .display-4 {
+    font-size: 2rem;
+  }
+
+  .book-image-container {
+    height: 150px;
+  }
+
+  .feature-icon {
+    width: 60px;
+    height: 60px;
+    font-size: 1.5rem;
+  }
+
+  .search-filters {
+    padding: 15px;
+  }
+
+  .dashboard-card {
+    margin-bottom: 20px;
+  }
+}
+
+@media (max-width: 576px) {
+  .hero-section .lead {
+    font-size: 1rem;
+  }
+
+  .btn-lg {
+    padding: 8px 16px;
+    font-size: 1rem;
+  }
+
+  .card-body {
+    padding: 15px;
+  }
+
+  .stat-card {
+    padding: 20px;
+    margin-bottom: 15px;
+  }
+}
+
+/* Loading Spinner */
+.spinner-border-sm {
+  width: 1rem;
+  height: 1rem;
+}
+
+/* Image Upload Preview */
+.image-preview {
+  max-width: 200px;
+  max-height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin: 10px;
+}
+
+/* Pagination */
+.pagination .page-link {
+  color: var(--primary-color);
+}
+
+.pagination .page-item.active .page-link {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+/* Alert Styles */
+.alert-custom {
+  border-radius: 10px;
+  border: none;
+  padding: 15px 20px;
+}
+
+/* Book Condition Badges */
+.condition-excellent {
+  background-color: var(--success-color);
+}
+
+.condition-good {
+  background-color: var(--secondary-color);
+}
+
+.condition-fair {
+  background-color: var(--warning-color);
+}
+
+.condition-poor {
+  background-color: var(--danger-color);
+}
+
+/* Social Links */
+.social-links a {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.1);
+  transition: background-color 0.3s ease;
+}
+
+.social-links a:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}

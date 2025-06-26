@@ -1,0 +1,231 @@
+<%- include('../layout', { body: `
+<div class="container py-4">
+    <div class="row">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2 class="fw-bold">
+                    <i class="fas fa-tachometer-alt me-2 text-primary"></i>Dashboard
+                </h2>
+                <div class="d-flex gap-2">
+                    <a href="/books/sell/new" class="btn btn-primary">
+                        <i class="fas fa-plus me-2"></i>Jual Buku
+                    </a>
+                    <a href="/articles/create/new" class="btn btn-outline-primary">
+                        <i class="fas fa-pen me-2"></i>Tulis Artikel
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Statistics Cards -->
+    <div class="row g-4 mb-5">
+        <div class="col-lg-3 col-md-6">
+            <div class="stat-card">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <h3 class="mb-1"><%= stats.totalBooksListed %></h3>
+                        <p class="mb-0">Buku Dijual</p>
+                    </div>
+                    <i class="fas fa-book fa-2x opacity-75"></i>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+            <div class="stat-card success">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <h3 class="mb-1"><%= stats.totalBooksSold %></h3>
+                        <p class="mb-0">Buku Terjual</p>
+                    </div>
+                    <i class="fas fa-check-circle fa-2x opacity-75"></i>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+            <div class="stat-card warning">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <h3 class="mb-1"><%= stats.totalArticles %></h3>
+                        <p class="mb-0">Artikel Ditulis</p>
+                    </div>
+                    <i class="fas fa-newspaper fa-2x opacity-75"></i>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+            <div class="stat-card danger">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <h3 class="mb-1">Rp <%= stats.totalRevenue.toLocaleString('id-ID') %></h3>
+                        <p class="mb-0">Total Pendapatan</p>
+                    </div>
+                    <i class="fas fa-money-bill-wave fa-2x opacity-75"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row g-4">
+        <!-- Recent Books -->
+        <div class="col-lg-4">
+            <div class="card dashboard-card h-100">
+                <div class="card-header bg-transparent border-0 pb-0">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0">
+                            <i class="fas fa-book text-primary me-2"></i>Buku Terbaru
+                        </h5>
+                        <a href="/user/books" class="btn btn-sm btn-outline-primary">Lihat Semua</a>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <% if (recentBooks && recentBooks.length > 0) { %>
+                        <% recentBooks.forEach(book => { %>
+                            <div class="d-flex align-items-center mb-3 pb-3 border-bottom">
+                                <img src="<%= book.images && book.images.length > 0 ? '/uploads/books/' + book.images[0] : '/images/book-placeholder.jpg' %>" 
+                                     class="rounded me-3" style="width: 50px; height: 60px; object-fit: cover;" alt="<%= book.title %>">
+                                <div class="flex-grow-1">
+                                    <h6 class="mb-1 text-truncate"><%= book.title %></h6>
+                                    <p class="text-muted small mb-1"><%= book.author %></p>
+                                    <span class="badge bg-<%= book.status === 'available' ? 'success' : book.status === 'sold' ? 'primary' : 'warning' %>">
+                                        <%= book.status === 'available' ? 'Tersedia' : book.status === 'sold' ? 'Terjual' : 'Pending' %>
+                                    </span>
+                                </div>
+                                <div class="text-end">
+                                    <small class="text-primary fw-bold">Rp <%= book.price.toLocaleString('id-ID') %></small>
+                                </div>
+                            </div>
+                        <% }); %>
+                    <% } else { %>
+                        <div class="text-center py-4">
+                            <i class="fas fa-book fa-3x text-muted mb-3"></i>
+                            <p class="text-muted">Belum ada buku yang dijual</p>
+                            <a href="/books/sell/new" class="btn btn-primary btn-sm">Jual Buku Pertama</a>
+                        </div>
+                    <% } %>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recent Articles -->
+        <div class="col-lg-4">
+            <div class="card dashboard-card h-100">
+                <div class="card-header bg-transparent border-0 pb-0">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0">
+                            <i class="fas fa-newspaper text-success me-2"></i>Artikel Terbaru
+                        </h5>
+                        <a href="/user/articles" class="btn btn-sm btn-outline-success">Lihat Semua</a>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <% if (recentArticles && recentArticles.length > 0) { %>
+                        <% recentArticles.forEach(article => { %>
+                            <div class="mb-3 pb-3 border-bottom">
+                                <h6 class="mb-2"><%= article.title %></h6>
+                                <p class="text-muted small mb-2"><%= article.excerpt %></p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span class="badge bg-info"><%= article.category %></span>
+                                    <small class="text-muted">
+                                        <i class="fas fa-eye me-1"></i><%= article.views %>
+                                        <i class="fas fa-heart ms-2 me-1"></i><%= article.likes.length %>
+                                    </small>
+                                </div>
+                            </div>
+                        <% }); %>
+                    <% } else { %>
+                        <div class="text-center py-4">
+                            <i class="fas fa-newspaper fa-3x text-muted mb-3"></i>
+                            <p class="text-muted">Belum ada artikel yang ditulis</p>
+                            <a href="/articles/create/new" class="btn btn-success btn-sm">Tulis Artikel Pertama</a>
+                        </div>
+                    <% } %>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recent Transactions -->
+        <div class="col-lg-4">
+            <div class="card dashboard-card h-100">
+                <div class="card-header bg-transparent border-0 pb-0">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0">
+                            <i class="fas fa-shopping-cart text-warning me-2"></i>Pembelian Terbaru
+                        </h5>
+                        <a href="/transactions" class="btn btn-sm btn-outline-warning">Lihat Semua</a>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <% if (recentTransactions && recentTransactions.length > 0) { %>
+                        <% recentTransactions.forEach(transaction => { %>
+                            <div class="mb-3 pb-3 border-bottom">
+                                <div class="d-flex justify-content-between align-items-start mb-2">
+                                    <h6 class="mb-0">#<%= transaction.transactionId %></h6>
+                                    <span class="badge bg-<%= transaction.status === 'delivered' ? 'success' : transaction.status === 'shipped' ? 'info' : transaction.status === 'confirmed' ? 'primary' : 'warning' %>">
+                                        <%= transaction.status === 'pending' ? 'Pending' : 
+                                            transaction.status === 'confirmed' ? 'Dikonfirmasi' :
+                                            transaction.status === 'shipped' ? 'Dikirim' :
+                                            transaction.status === 'delivered' ? 'Selesai' : 'Dibatalkan' %>
+                                    </span>
+                                </div>
+                                <p class="text-muted small mb-1">
+                                    <%= transaction.items.length %> item - 
+                                    Rp <%= transaction.finalAmount.toLocaleString('id-ID') %>
+                                </p>
+                                <small class="text-muted">
+                                    <%= new Date(transaction.createdAt).toLocaleDateString('id-ID') %>
+                                </small>
+                            </div>
+                        <% }); %>
+                    <% } else { %>
+                        <div class="text-center py-4">
+                            <i class="fas fa-shopping-cart fa-3x text-muted mb-3"></i>
+                            <p class="text-muted">Belum ada pembelian</p>
+                            <a href="/books" class="btn btn-warning btn-sm">Mulai Belanja</a>
+                        </div>
+                    <% } %>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quick Actions -->
+    <div class="row mt-5">
+        <div class="col-12">
+            <div class="card dashboard-card">
+                <div class="card-body">
+                    <h5 class="card-title mb-4">
+                        <i class="fas fa-bolt text-warning me-2"></i>Aksi Cepat
+                    </h5>
+                    <div class="row g-3">
+                        <div class="col-md-3 col-6">
+                            <a href="/books/sell/new" class="btn btn-outline-primary w-100 py-3">
+                                <i class="fas fa-plus-circle fa-2x mb-2 d-block"></i>
+                                Jual Buku Baru
+                            </a>
+                        </div>
+                        <div class="col-md-3 col-6">
+                            <a href="/articles/create/new" class="btn btn-outline-success w-100 py-3">
+                                <i class="fas fa-pen-fancy fa-2x mb-2 d-block"></i>
+                                Tulis Artikel
+                            </a>
+                        </div>
+                        <div class="col-md-3 col-6">
+                            <a href="/user/profile" class="btn btn-outline-info w-100 py-3">
+                                <i class="fas fa-user-edit fa-2x mb-2 d-block"></i>
+                                Edit Profil
+                            </a>
+                        </div>
+                        <div class="col-md-3 col-6">
+                            <a href="/books" class="btn btn-outline-warning w-100 py-3">
+                                <i class="fas fa-search fa-2x mb-2 d-block"></i>
+                                Cari Buku
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+` }) %>

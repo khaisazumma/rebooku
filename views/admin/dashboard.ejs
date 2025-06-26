@@ -1,0 +1,352 @@
+<%- include('../layout', { body: `
+<div class="container-fluid py-4">
+    <div class="row">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2 class="fw-bold">
+                    <i class="fas fa-cogs me-2 text-primary"></i>Admin Dashboard
+                </h2>
+                <div class="d-flex gap-2">
+                    <a href="/admin/promo-codes" class="btn btn-success">
+                        <i class="fas fa-tags me-2"></i>Kelola Promo
+                    </a>
+                    <a href="/admin/users" class="btn btn-primary">
+                        <i class="fas fa-users me-2"></i>Kelola User
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Statistics Cards -->
+    <div class="row g-4 mb-5">
+        <div class="col-lg-3 col-md-6">
+            <div class="stat-card">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <h3 class="mb-1"><%= stats.totalUsers %></h3>
+                        <p class="mb-0">Total Pengguna</p>
+                    </div>
+                    <i class="fas fa-users fa-2x opacity-75"></i>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+            <div class="stat-card success">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <h3 class="mb-1"><%= stats.totalBooks %></h3>
+                        <p class="mb-0">Total Buku</p>
+                    </div>
+                    <i class="fas fa-book fa-2x opacity-75"></i>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+            <div class="stat-card warning">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <h3 class="mb-1"><%= stats.totalTransactions %></h3>
+                        <p class="mb-0">Total Transaksi</p>
+                    </div>
+                    <i class="fas fa-shopping-cart fa-2x opacity-75"></i>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+            <div class="stat-card danger">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <h3 class="mb-1">Rp <%= stats.totalRevenue.toLocaleString('id-ID') %></h3>
+                        <p class="mb-0">Total Revenue</p>
+                    </div>
+                    <i class="fas fa-money-bill-wave fa-2x opacity-75"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Charts -->
+    <div class="row g-4 mb-5">
+        <div class="col-lg-8">
+            <div class="card dashboard-card">
+                <div class="card-header bg-transparent border-0">
+                    <h5 class="mb-0">
+                        <i class="fas fa-chart-line text-primary me-2"></i>Statistik Transaksi Bulanan
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <canvas id="monthlyChart" height="100"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="card dashboard-card">
+                <div class="card-header bg-transparent border-0">
+                    <h5 class="mb-0">
+                        <i class="fas fa-chart-pie text-success me-2"></i>Status Transaksi
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <canvas id="statusChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row g-4">
+        <!-- Recent Users -->
+        <div class="col-lg-4">
+            <div class="card dashboard-card h-100">
+                <div class="card-header bg-transparent border-0 pb-0">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0">
+                            <i class="fas fa-user-plus text-primary me-2"></i>Pengguna Baru
+                        </h5>
+                        <a href="/admin/users" class="btn btn-sm btn-outline-primary">Lihat Semua</a>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <% if (recentUsers && recentUsers.length > 0) { %>
+                        <% recentUsers.forEach(user => { %>
+                            <div class="d-flex align-items-center mb-3 pb-3 border-bottom">
+                                <div class="avatar-circle bg-primary text-white me-3">
+                                    <%= user.fullName.charAt(0).toUpperCase() %>
+                                </div>
+                                <div class="flex-grow-1">
+                                    <h6 class="mb-1"><%= user.fullName %></h6>
+                                    <p class="text-muted small mb-0">@<%= user.username %></p>
+                                </div>
+                                <small class="text-muted">
+                                    <%= new Date(user.joinDate).toLocaleDateString('id-ID') %>
+                                </small>
+                            </div>
+                        <% }); %>
+                    <% } else { %>
+                        <div class="text-center py-4">
+                            <i class="fas fa-users fa-3x text-muted mb-3"></i>
+                            <p class="text-muted">Tidak ada pengguna baru</p>
+                        </div>
+                    <% } %>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recent Books -->
+        <div class="col-lg-4">
+            <div class="card dashboard-card h-100">
+                <div class="card-header bg-transparent border-0 pb-0">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0">
+                            <i class="fas fa-book text-success me-2"></i>Buku Terbaru
+                        </h5>
+                        <a href="/admin/books" class="btn btn-sm btn-outline-success">Lihat Semua</a>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <% if (recentBooks && recentBooks.length > 0) { %>
+                        <% recentBooks.forEach(book => { %>
+                            <div class="d-flex align-items-center mb-3 pb-3 border-bottom">
+                                <img src="<%= book.images && book.images.length > 0 ? '/uploads/books/' + book.images[0] : '/images/book-placeholder.jpg' %>" 
+                                     class="rounded me-3" style="width: 40px; height: 50px; object-fit: cover;" alt="<%= book.title %>">
+                                <div class="flex-grow-1">
+                                    <h6 class="mb-1 text-truncate"><%= book.title %></h6>
+                                    <p class="text-muted small mb-0">oleh <%= book.seller.fullName %></p>
+                                </div>
+                                <div class="text-end">
+                                    <small class="text-success fw-bold">Rp <%= book.price.toLocaleString('id-ID') %></small>
+                                </div>
+                            </div>
+                        <% }); %>
+                    <% } else { %>
+                        <div class="text-center py-4">
+                            <i class="fas fa-book fa-3x text-muted mb-3"></i>
+                            <p class="text-muted">Tidak ada buku baru</p>
+                        </div>
+                    <% } %>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recent Transactions -->
+        <div class="col-lg-4">
+            <div class="card dashboard-card h-100">
+                <div class="card-header bg-transparent border-0 pb-0">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0">
+                            <i class="fas fa-shopping-cart text-warning me-2"></i>Transaksi Terbaru
+                        </h5>
+                        <a href="/admin/transactions" class="btn btn-sm btn-outline-warning">Lihat Semua</a>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <% if (recentTransactions && recentTransactions.length > 0) { %>
+                        <% recentTransactions.forEach(transaction => { %>
+                            <div class="mb-3 pb-3 border-bottom">
+                                <div class="d-flex justify-content-between align-items-start mb-2">
+                                    <h6 class="mb-0">#<%= transaction.transactionId %></h6>
+                                    <span class="badge bg-<%= transaction.status === 'delivered' ? 'success' : transaction.status === 'shipped' ? 'info' : transaction.status === 'confirmed' ? 'primary' : 'warning' %>">
+                                        <%= transaction.status %>
+                                    </span>
+                                </div>
+                                <p class="text-muted small mb-1">
+                                    <%= transaction.buyer.fullName %> - 
+                                    Rp <%= transaction.finalAmount.toLocaleString('id-ID') %>
+                                </p>
+                                <small class="text-muted">
+                                    <%= new Date(transaction.createdAt).toLocaleDateString('id-ID') %>
+                                </small>
+                            </div>
+                        <% }); %>
+                    <% } else { %>
+                        <div class="text-center py-4">
+                            <i class="fas fa-shopping-cart fa-3x text-muted mb-3"></i>
+                            <p class="text-muted">Tidak ada transaksi baru</p>
+                        </div>
+                    <% } %>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quick Actions -->
+    <div class="row mt-5">
+        <div class="col-12">
+            <div class="card dashboard-card">
+                <div class="card-body">
+                    <h5 class="card-title mb-4">
+                        <i class="fas fa-bolt text-warning me-2"></i>Aksi Admin
+                    </h5>
+                    <div class="row g-3">
+                        <div class="col-md-2 col-6">
+                            <a href="/admin/users" class="btn btn-outline-primary w-100 py-3">
+                                <i class="fas fa-users fa-2x mb-2 d-block"></i>
+                                Kelola User
+                            </a>
+                        </div>
+                        <div class="col-md-2 col-6">
+                            <a href="/admin/books" class="btn btn-outline-success w-100 py-3">
+                                <i class="fas fa-book fa-2x mb-2 d-block"></i>
+                                Kelola Buku
+                            </a>
+                        </div>
+                        <div class="col-md-2 col-6">
+                            <a href="/admin/transactions" class="btn btn-outline-warning w-100 py-3">
+                                <i class="fas fa-shopping-cart fa-2x mb-2 d-block"></i>
+                                Kelola Transaksi
+                            </a>
+                        </div>
+                        <div class="col-md-2 col-6">
+                            <a href="/admin/articles" class="btn btn-outline-info w-100 py-3">
+                                <i class="fas fa-newspaper fa-2x mb-2 d-block"></i>
+                                Kelola Artikel
+                            </a>
+                        </div>
+                        <div class="col-md-2 col-6">
+                            <a href="/admin/promo-codes" class="btn btn-outline-danger w-100 py-3">
+                                <i class="fas fa-tags fa-2x mb-2 d-block"></i>
+                                Kelola Promo
+                            </a>
+                        </div>
+                        <div class="col-md-2 col-6">
+                            <a href="/admin/reports" class="btn btn-outline-dark w-100 py-3">
+                                <i class="fas fa-chart-bar fa-2x mb-2 d-block"></i>
+                                Laporan
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+// Monthly Chart
+const monthlyCtx = document.getElementById('monthlyChart').getContext('2d');
+const monthlyData = <%- JSON.stringify(monthlyStats) %>;
+
+const monthlyChart = new Chart(monthlyCtx, {
+    type: 'line',
+    data: {
+        labels: monthlyData.map(item => \`\${item._id.month}/\${item._id.year}\`),
+        datasets: [{
+            label: 'Jumlah Transaksi',
+            data: monthlyData.map(item => item.count),
+            borderColor: 'rgb(75, 192, 192)',
+            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+            tension: 0.1
+        }, {
+            label: 'Revenue (Ribu Rupiah)',
+            data: monthlyData.map(item => item.revenue / 1000),
+            borderColor: 'rgb(255, 99, 132)',
+            backgroundColor: 'rgba(255, 99, 132, 0.2)',
+            tension: 0.1,
+            yAxisID: 'y1'
+        }]
+    },
+    options: {
+        responsive: true,
+        plugins: {
+            legend: {
+                position: 'top',
+            }
+        },
+        scales: {
+            y: {
+                type: 'linear',
+                display: true,
+                position: 'left',
+            },
+            y1: {
+                type: 'linear',
+                display: true,
+                position: 'right',
+                grid: {
+                    drawOnChartArea: false,
+                },
+            }
+        }
+    }
+});
+
+// Status Chart (Dummy data for demo)
+const statusCtx = document.getElementById('statusChart').getContext('2d');
+const statusChart = new Chart(statusCtx, {
+    type: 'doughnut',
+    data: {
+        labels: ['Pending', 'Confirmed', 'Shipped', 'Delivered'],
+        datasets: [{
+            data: [15, 25, 20, 40],
+            backgroundColor: [
+                '#ffc107',
+                '#0d6efd',
+                '#17a2b8',
+                '#28a745'
+            ]
+        }]
+    },
+    options: {
+        responsive: true,
+        plugins: {
+            legend: {
+                position: 'bottom',
+            }
+        }
+    }
+});
+</script>
+
+<style>
+.avatar-circle {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+</style>
+` }) %>

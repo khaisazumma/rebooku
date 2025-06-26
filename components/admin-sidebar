@@ -1,0 +1,83 @@
+"use client";
+
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { Card } from "@/components/ui/card";
+import { cn } from "@/lib/utils";
+import {
+  BarChart2,
+  Users,
+  BookOpen,
+  CreditCard,
+  Tag,
+} from "lucide-react";
+import { useAuth } from "@/contexts/auth-context";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+
+export function AdminSidebar() {
+  const pathname = usePathname();
+  const { user } = useAuth();
+
+  const menuItems = [
+    {
+      title: "Dashboard",
+      href: "/admin/dashboard",
+      icon: <BarChart2 className="h-5 w-5" />,
+    },
+    {
+      title: "Pengguna",
+      href: "admin/users",
+      icon: <Users className="h-5 w-5" />,
+    },
+    {
+      title: "Buku",
+      href: "/admin/books",
+      icon: <BookOpen className="h-5 w-5" />,
+    },
+    {
+      title: "Transaksi",
+      href: "/admin/transactions",
+      icon: <CreditCard className="h-5 w-5" />,
+    },
+    {
+      title: "Kode Promo",
+      href: "/admin/promo-codes",
+      icon: <Tag className="h-5 w-5" />,
+    },
+  ];
+
+  return (
+    <Card className="p-4 h-fit">
+      <div className="flex items-center space-x-3 mb-6 p-2">
+        <Avatar className="h-12 w-12">
+          <AvatarImage
+            src={user?.photoURL ?? "https://via.placeholder.com/100"}
+            alt={user?.name ?? "Admin"}
+          />
+          <AvatarFallback>{user?.name?.charAt(0) ?? "A"}</AvatarFallback>
+        </Avatar>
+        <div>
+          <h3 className="font-medium">{user?.name ?? "Admin"}</h3>
+          <p className="text-sm text-gray-500">{user?.email}</p>
+        </div>
+      </div>
+      <nav className="space-y-1">
+        {menuItems.map((item) => (
+          <Link
+            key={item.href}
+            href={item.href}
+            className={cn(
+              "flex items-center space-x-3 px-3 py-2 rounded-md text-sm transition-colors",
+              pathname === item.href
+                ? "bg-blue-50 text-blue-600 font-medium"
+                : "text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+            )}
+          >
+            {item.icon}
+            <span>{item.title}</span>
+          </Link>
+        ))}
+      </nav>
+    </Card>
+  );
+}

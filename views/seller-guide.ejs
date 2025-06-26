@@ -1,0 +1,444 @@
+<%- include('layout', { body: `
+<div class="container py-5">
+    <!-- Hero Section -->
+    <div class="row mb-5">
+        <div class="col-lg-8 mx-auto text-center">
+            <h1 class="display-4 fw-bold text-primary mb-4">
+                <i class="fas fa-graduation-cap me-3"></i>Panduan Penjual Rebooku
+            </h1>
+            <p class="lead text-muted">
+                Pelajari tips dan trik untuk menjadi penjual sukses di marketplace buku bekas terpercaya
+            </p>
+        </div>
+    </div>
+
+    <!-- Quick Stats -->
+    <div class="row g-4 mb-5">
+        <div class="col-md-3 col-6">
+            <div class="text-center">
+                <div class="bg-primary text-white rounded-circle mx-auto mb-3" style="width: 80px; height: 80px; display: flex; align-items: center; justify-content: center;">
+                    <i class="fas fa-users fa-2x"></i>
+                </div>
+                <h4 class="fw-bold">5,000+</h4>
+                <p class="text-muted mb-0">Penjual Aktif</p>
+            </div>
+        </div>
+        <div class="col-md-3 col-6">
+            <div class="text-center">
+                <div class="bg-success text-white rounded-circle mx-auto mb-3" style="width: 80px; height: 80px; display: flex; align-items: center; justify-content: center;">
+                    <i class="fas fa-book fa-2x"></i>
+                </div>
+                <h4 class="fw-bold">50,000+</h4>
+                <p class="text-muted mb-0">Buku Terjual</p>
+            </div>
+        </div>
+        <div class="col-md-3 col-6">
+            <div class="text-center">
+                <div class="bg-warning text-white rounded-circle mx-auto mb-3" style="width: 80px; height: 80px; display: flex; align-items: center; justify-content: center;">
+                    <i class="fas fa-star fa-2x"></i>
+                </div>
+                <h4 class="fw-bold">4.8/5</h4>
+                <p class="text-muted mb-0">Rating Rata-rata</p>
+            </div>
+        </div>
+        <div class="col-md-3 col-6">
+            <div class="text-center">
+                <div class="bg-info text-white rounded-circle mx-auto mb-3" style="width: 80px; height: 80px; display: flex; align-items: center; justify-content: center;">
+                    <i class="fas fa-money-bill-wave fa-2x"></i>
+                </div>
+                <h4 class="fw-bold">98%</h4>
+                <p class="text-muted mb-0">Tingkat Kepuasan</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="row">
+        <div class="col-lg-8">
+            <!-- Getting Started -->
+            <div class="card shadow-sm mb-5">
+                <div class="card-body p-5">
+                    <h2 class="fw-bold text-primary mb-4">
+                        <i class="fas fa-rocket me-3"></i>Memulai Berjualan
+                    </h2>
+                    
+                    <div class="row g-4">
+                        <div class="col-md-6">
+                            <div class="d-flex">
+                                <div class="bg-primary text-white rounded-circle me-3" style="width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;">
+                                    <span class="fw-bold">1</span>
+                                </div>
+                                <div>
+                                    <h5 class="fw-bold">Daftar Akun</h5>
+                                    <p class="text-muted mb-0">Buat akun Rebooku dan lengkapi profil Anda dengan informasi yang akurat.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="d-flex">
+                                <div class="bg-success text-white rounded-circle me-3" style="width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;">
+                                    <span class="fw-bold">2</span>
+                                </div>
+                                <div>
+                                    <h5 class="fw-bold">Siapkan Buku</h5>
+                                    <p class="text-muted mb-0">Pilih buku-buku berkualitas yang ingin dijual dan pastikan kondisinya baik.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="d-flex">
+                                <div class="bg-warning text-white rounded-circle me-3" style="width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;">
+                                    <span class="fw-bold">3</span>
+                                </div>
+                                <div>
+                                    <h5 class="fw-bold">Upload Produk</h5>
+                                    <p class="text-muted mb-0">Tambahkan buku dengan foto menarik dan deskripsi yang detail.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="d-flex">
+                                <div class="bg-info text-white rounded-circle me-3" style="width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;">
+                                    <span class="fw-bold">4</span>
+                                </div>
+                                <div>
+                                    <h5 class="fw-bold">Mulai Jual</h5>
+                                    <p class="text-muted mb-0">Promosikan buku Anda dan berinteraksi dengan pembeli potensial.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Photography Tips -->
+            <div class="card shadow-sm mb-5">
+                <div class="card-body p-5">
+                    <h2 class="fw-bold text-success mb-4">
+                        <i class="fas fa-camera me-3"></i>Tips Fotografi Buku
+                    </h2>
+                    
+                    <div class="row g-4">
+                        <div class="col-md-6">
+                            <img src="/images/book-photo-good.jpg" class="img-fluid rounded mb-3" alt="Contoh foto buku yang baik">
+                            <h5 class="text-success">✓ Foto yang Baik</h5>
+                            <ul class="list-unstyled">
+                                <li><i class="fas fa-check text-success me-2"></i>Pencahayaan yang cukup</li>
+                                <li><i class="fas fa-check text-success me-2"></i>Background bersih</li>
+                                <li><i class="fas fa-check text-success me-2"></i>Fokus yang tajam</li>
+                                <li><i class="fas fa-check text-success me-2"></i>Menampilkan kondisi buku</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <img src="/images/book-photo-bad.jpg" class="img-fluid rounded mb-3" alt="Contoh foto buku yang buruk">
+                            <h5 class="text-danger">✗ Foto yang Buruk</h5>
+                            <ul class="list-unstyled">
+                                <li><i class="fas fa-times text-danger me-2"></i>Pencahayaan kurang</li>
+                                <li><i class="fas fa-times text-danger me-2"></i>Background berantakan</li>
+                                <li><i class="fas fa-times text-danger me-2"></i>Foto buram/tidak fokus</li>
+                                <li><i class="fas fa-times text-danger me-2"></i>Tidak menunjukkan detail</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="alert alert-info mt-4">
+                        <h6 class="fw-bold mb-2">
+                            <i class="fas fa-lightbulb me-2"></i>Pro Tips:
+                        </h6>
+                        <ul class="mb-0">
+                            <li>Gunakan cahaya alami dari jendela</li>
+                            <li>Ambil foto dari berbagai sudut (depan, belakang, samping)</li>
+                            <li>Tunjukkan kondisi khusus (bekas lipatan, coretan, dll)</li>
+                            <li>Gunakan background putih atau netral</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pricing Strategy -->
+            <div class="card shadow-sm mb-5">
+                <div class="card-body p-5">
+                    <h2 class="fw-bold text-warning mb-4">
+                        <i class="fas fa-tags me-3"></i>Strategi Penetapan Harga
+                    </h2>
+                    
+                    <div class="row g-4">
+                        <div class="col-md-4">
+                            <div class="text-center p-4 border rounded">
+                                <div class="bg-success text-white rounded-circle mx-auto mb-3" style="width: 60px; height: 60px; display: flex; align-items: center; justify-content: center;">
+                                    <i class="fas fa-gem"></i>
+                                </div>
+                                <h5 class="fw-bold">Kondisi Excellent</h5>
+                                <p class="text-muted">60-70% dari harga asli</p>
+                                <small class="text-success">Seperti baru, tidak ada kerusakan</small>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="text-center p-4 border rounded">
+                                <div class="bg-primary text-white rounded-circle mx-auto mb-3" style="width: 60px; height: 60px; display: flex; align-items: center; justify-content: center;">
+                                    <i class="fas fa-thumbs-up"></i>
+                                </div>
+                                <h5 class="fw-bold">Kondisi Good</h5>
+                                <p class="text-muted">40-60% dari harga asli</p>
+                                <small class="text-primary">Bekas baca normal, masih layak</small>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="text-center p-4 border rounded">
+                                <div class="bg-warning text-white rounded-circle mx-auto mb-3" style="width: 60px; height: 60px; display: flex; align-items: center; justify-content: center;">
+                                    <i class="fas fa-exclamation-triangle"></i>
+                                </div>
+                                <h5 class="fw-bold">Kondisi Fair</h5>
+                                <p class="text-muted">20-40% dari harga asli</p>
+                                <small class="text-warning">Ada kerusakan minor, masih bisa dibaca</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-4">
+                        <h5 class="fw-bold mb-3">Faktor yang Mempengaruhi Harga:</h5>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <ul class="list-unstyled">
+                                    <li><i class="fas fa-star text-warning me-2"></i>Popularitas buku</li>
+                                    <li><i class="fas fa-calendar text-info me-2"></i>Tahun terbit</li>
+                                    <li><i class="fas fa-award text-success me-2"></i>Penghargaan yang diterima</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6">
+                                <ul class="list-unstyled">
+                                    <li><i class="fas fa-search text-primary me-2"></i>Tingkat permintaan</li>
+                                    <li><i class="fas fa-box text-secondary me-2"></i>Ketersediaan di pasaran</li>
+                                    <li><i class="fas fa-graduation-cap text-danger me-2"></i>Buku akademik/referensi</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Writing Description -->
+            <div class="card shadow-sm mb-5">
+                <div class="card-body p-5">
+                    <h2 class="fw-bold text-info mb-4">
+                        <i class="fas fa-pen me-3"></i>Menulis Deskripsi yang Menarik
+                    </h2>
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h5 class="text-success mb-3">✓ Contoh Deskripsi Baik:</h5>
+                            <div class="bg-light p-3 rounded">
+                                <p class="mb-2"><strong>"Atomic Habits - James Clear (Kondisi Excellent)"</strong></p>
+                                <p class="small mb-2">
+                                    Buku bestseller tentang membangun kebiasaan baik dan menghilangkan kebiasaan buruk. 
+                                    Kondisi seperti baru, tidak ada coretan atau lipatan. Sampul masih mengkilap dan 
+                                    halaman dalam bersih tanpa noda.
+                                </p>
+                                <p class="small mb-0">
+                                    <strong>Spesifikasi:</strong><br>
+                                    • Penerbit: Gramedia<br>
+                                    • Tahun: 2019<br>
+                                    • Halaman: 320<br>
+                                    • Bahasa: Indonesia
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <h5 class="text-danger mb-3">✗ Contoh Deskripsi Buruk:</h5>
+                            <div class="bg-light p-3 rounded">
+                                <p class="mb-2"><strong>"Buku bagus"</strong></p>
+                                <p class="small mb-0">
+                                    Jual buku bekas. Kondisi oke. Minat chat aja.
+                                </p>
+                            </div>
+                            
+                            <h6 class="mt-4 mb-2">Yang Harus Dihindari:</h6>
+                            <ul class="small">
+                                <li>Deskripsi terlalu singkat</li>
+                                <li>Tidak menyebutkan kondisi detail</li>
+                                <li>Tidak ada spesifikasi buku</li>
+                                <li>Bahasa tidak profesional</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="alert alert-success mt-4">
+                        <h6 class="fw-bold mb-2">
+                            <i class="fas fa-check-circle me-2"></i>Checklist Deskripsi Lengkap:
+                        </h6>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <ul class="mb-0">
+                                    <li>Judul dan penulis lengkap</li>
+                                    <li>Kondisi buku yang jujur</li>
+                                    <li>Tahun terbit dan penerbit</li>
+                                    <li>Jumlah halaman</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6">
+                                <ul class="mb-0">
+                                    <li>Bahasa buku</li>
+                                    <li>Kerusakan jika ada</li>
+                                    <li>Alasan menjual (opsional)</li>
+                                    <li>Kata kunci untuk pencarian</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Customer Service -->
+            <div class="card shadow-sm mb-5">
+                <div class="card-body p-5">
+                    <h2 class="fw-bold text-danger mb-4">
+                        <i class="fas fa-headset me-3"></i>Pelayanan Pelanggan
+                    </h2>
+                    
+                    <div class="row g-4">
+                        <div class="col-md-6">
+                            <h5 class="fw-bold mb-3">Komunikasi yang Baik:</h5>
+                            <ul class="list-unstyled">
+                                <li class="mb-2">
+                                    <i class="fas fa-clock text-success me-2"></i>
+                                    <strong>Respon Cepat:</strong> Balas pesan dalam 24 jam
+                                </li>
+                                <li class="mb-2">
+                                    <i class="fas fa-smile text-primary me-2"></i>
+                                    <strong>Ramah & Sopan:</strong> Gunakan bahasa yang baik
+                                </li>
+                                <li class="mb-2">
+                                    <i class="fas fa-info-circle text-info me-2"></i>
+                                    <strong>Informatif:</strong> Berikan informasi yang jelas
+                                </li>
+                                <li class="mb-2">
+                                    <i class="fas fa-handshake text-warning me-2"></i>
+                                    <strong>Profesional:</strong> Jaga sikap profesional
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <h5 class="fw-bold mb-3">Menangani Komplain:</h5>
+                            <ol class="list-unstyled">
+                                <li class="mb-2">
+                                    <span class="bg-primary text-white rounded-circle me-2 px-2 py-1 small">1</span>
+                                    Dengarkan keluhan dengan sabar
+                                </li>
+                                <li class="mb-2">
+                                    <span class="bg-success text-white rounded-circle me-2 px-2 py-1 small">2</span>
+                                    Minta maaf atas ketidaknyamanan
+                                </li>
+                                <li class="mb-2">
+                                    <span class="bg-warning text-white rounded-circle me-2 px-2 py-1 small">3</span>
+                                    Tawarkan solusi yang masuk akal
+                                </li>
+                                <li class="mb-2">
+                                    <span class="bg-info text-white rounded-circle me-2 px-2 py-1 small">4</span>
+                                    Follow up hingga masalah selesai
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sidebar -->
+        <div class="col-lg-4">
+            <!-- Quick Start -->
+            <div class="card shadow-sm mb-4 sticky-top" style="top: 20px;">
+                <div class="card-body text-center p-4">
+                    <h5 class="fw-bold mb-3">Siap Mulai Berjualan?</h5>
+                    <p class="text-muted mb-4">Bergabunglah dengan ribuan penjual sukses di Rebooku</p>
+                    <% if (user) { %>
+                        <a href="/books/sell/new" class="btn btn-primary btn-lg w-100 mb-3">
+                            <i class="fas fa-plus me-2"></i>Jual Buku Sekarang
+                        </a>
+                        <a href="/user/dashboard" class="btn btn-outline-primary w-100">
+                            <i class="fas fa-tachometer-alt me-2"></i>Ke Dashboard
+                        </a>
+                    <% } else { %>
+                        <a href="/auth/register" class="btn btn-primary btn-lg w-100 mb-3">
+                            <i class="fas fa-user-plus me-2"></i>Daftar Sekarang
+                        </a>
+                        <a href="/auth/login" class="btn btn-outline-primary w-100">
+                            <i class="fas fa-sign-in-alt me-2"></i>Masuk
+                        </a>
+                    <% } %>
+                </div>
+            </div>
+
+            <!-- Success Stories -->
+            <div class="card shadow-sm mb-4">
+                <div class="card-body">
+                    <h5 class="fw-bold mb-3">
+                        <i class="fas fa-trophy text-warning me-2"></i>Kisah Sukses
+                    </h5>
+                    
+                    <div class="mb-4">
+                        <div class="d-flex align-items-center mb-2">
+                            <img src="/images/seller-1.jpg" class="rounded-circle me-3" width="40" height="40" alt="Seller">
+                            <div>
+                                <h6 class="mb-0">Sarah Wijaya</h6>
+                                <small class="text-muted">Top Seller</small>
+                            </div>
+                        </div>
+                        <p class="small text-muted mb-2">
+                            "Dalam 6 bulan, saya berhasil menjual 200+ buku dan meraup keuntungan Rp 15 juta. 
+                            Kunci sukses adalah foto yang bagus dan deskripsi yang jujur."
+                        </p>
+                        <div class="text-warning small">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span class="text-muted ms-1">5.0 (150 review)</span>
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <div class="d-flex align-items-center mb-2">
+                            <img src="/images/seller-2.jpg" class="rounded-circle me-3" width="40" height="40" alt="Seller">
+                            <div>
+                                <h6 class="mb-0">Ahmad Rizki</h6>
+                                <small class="text-muted">Power Seller</small>
+                            </div>
+                        </div>
+                        <p class="small text-muted mb-2">
+                            "Rebooku memberikan platform yang mudah untuk menjual koleksi buku lama saya. 
+                            Sistemnya transparan dan pembayarannya cepat."
+                        </p>
+                        <div class="text-warning small">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span class="text-muted ms-1">4.9 (89 review)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Support -->
+            <div class="card shadow-sm">
+                <div class="card-body text-center">
+                    <h5 class="fw-bold mb-3">
+                        <i class="fas fa-question-circle text-info me-2"></i>Butuh Bantuan?
+                    </h5>
+                    <p class="text-muted mb-4">Tim support kami siap membantu Anda 24/7</p>
+                    <div class="d-grid gap-2">
+                        <a href="mailto:support@rebooku.com" class="btn btn-outline-info">
+                            <i class="fas fa-envelope me-2"></i>Email Support
+                        </a>
+                        <a href="https://wa.me/6281234567890" class="btn btn-outline-success">
+                            <i class="fab fa-whatsapp me-2"></i>WhatsApp
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+` }) %>
